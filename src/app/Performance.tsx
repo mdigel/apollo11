@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Waterfall from './Waterfall';
 // import Divider from '@material-ui/core/Divider';
 // import useClientEventlogs from './utils/useClientEventlogs';
 
@@ -118,6 +119,7 @@ function Performance({events}: IPerformanceData) {
       <Grid container spacing={0}>
         <Grid item xs={4} className={componentClass.grid}>
           <h2>Events</h2>
+
           <List component="nav" aria-label="main mailbox folders" dense>
             {Object.entries(events)
               .filter(([, obj]: any) => obj && (obj.response || obj.request))
@@ -154,6 +156,7 @@ function Performance({events}: IPerformanceData) {
         </Grid>
         <Grid item xs={8} className={componentClass.grid}>
           <h2>Tracing Details</h2>
+          <Waterfall />
           {Object.keys(tracingInfo).length
             ? renderTracingDetails(tracingInfo)
             : ''}

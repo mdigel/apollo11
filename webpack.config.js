@@ -12,8 +12,7 @@ const config = {
     filename: '[name].bundle.js',
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
@@ -47,6 +46,10 @@ const config = {
         include: /node_modules/,
         type: 'javascript/auto',
       },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      }
     ],
   },
   resolve: {
