@@ -27,6 +27,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.6.0",
+    "csv-loader": "^3.0.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^7.4.0",
@@ -74,8 +75,10 @@
     "react-html-parser": "^2.0.2",
     "react-json-tree": "^0.11.2",
     "react-json-view": "^1.19.1",
+    "react-resize-observer": "^1.1.1",
     "react-router-dom": "^5.2.0",
-    "style-loader": "^1.2.1"
+    "style-loader": "^1.2.1",
+    "use-resize-observer": "^6.1.0"
   },
   "engines": {
     "node": "^10.12.0 || >=12.0.0"

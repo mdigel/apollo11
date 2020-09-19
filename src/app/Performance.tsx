@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Waterfall from './Waterfall';
+import WaterfallContainer from './WaterfallContainer';
 // import Divider from '@material-ui/core/Divider';
 // import useClientEventlogs from './utils/useClientEventlogs';
 
@@ -45,6 +45,7 @@ function Performance({events}: IPerformanceData) {
     (): ITimings => ({timings: ''}),
   );
   const [tracingInfo, setTracingInfo] = React.useState({});
+  const [displayWaterfall, setDisplayWaterfall] = React.useState(false);
 
   const handleListItemClick = (event: any, index: number, key: string) => {
     if (events[key]) {
@@ -76,6 +77,7 @@ function Performance({events}: IPerformanceData) {
       }
     }
     setSelectedIndex(index);
+    setDisplayWaterfall(true);
   };
 
   const formatTime = (time: number) => {
@@ -111,6 +113,10 @@ function Performance({events}: IPerformanceData) {
         })}
       </List>
     );
+  };
+
+  const renderTotalResolverTime = (tracing: any) => {
+    return `${formatTime(tracing.duration)}`;
   };
 
   // console.log('Performance Data :: ', events);
@@ -155,8 +161,19 @@ function Performance({events}: IPerformanceData) {
           </List>
         </Grid>
         <Grid item xs={8} className={componentClass.grid}>
-          <h2>Tracing Details</h2>
-          <Waterfall />
+          {displayWaterfall ? (
+            <>
+              <h2>
+                Total Resolver Time: {renderTotalResolverTime(tracingInfo)}
+              </h2>
+              <WaterfallContainer tracingInfo={tracingInfo} />
+            </>
+          ) : (
+            <>
+              <h2>Total Resolver Time: 0</h2>
+              <p> Click an event to see a chart!</p>
+            </>
+          )}
           {Object.keys(tracingInfo).length
             ? renderTracingDetails(tracingInfo)
             : ''}

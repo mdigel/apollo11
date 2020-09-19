@@ -49,6 +49,15 @@ const config = {
       {
         test: /\.svg$/,
         loader: 'svg-inline-loader'
+      },
+      {
+        test: /\.csv$/,
+        loader: 'csv-loader',
+        options: {
+          dynamicTyping: true,
+          header: true,
+          skipEmptyLines: true
+        }
       }
     ],
   },
